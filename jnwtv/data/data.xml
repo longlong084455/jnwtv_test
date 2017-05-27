@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<info>
+    <init>
+        <brand name = 'xiaomi'>
+            <deviceName>LN59UK9999999999</deviceName>
+            <platformVersion>5.0.2</platformVersion>
+            <platformName>Android</platformName>
+        </brand>
+        <brand name = 'zhongxing'>
+            <deviceName>ZTES2010</deviceName>
+            <platformVersion>5.1</platformVersion>
+            <platformName>Android</platformName>
+        </brand>
+        <brand name = 'oppo R9'>
+            <deviceName>H6LVCMEA99999999</deviceName>
+            <platformVersion>5.1</platformVersion>
+            <platformName>Android</platformName>
+        </brand>
+        <package name = 'jnwtv'>
+            <appPackage>com.pcp</appPackage>
+            <appActivity>.activity.PictureActivity</appActivity>
+            <appWaitActivity>.activity.login.LoginActivity</appWaitActivity>
+            <appWaitActivity>.home.MainActivity</appWaitActivity>
+        </package>
+    </init>
+</info>
