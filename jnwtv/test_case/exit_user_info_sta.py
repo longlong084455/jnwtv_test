@@ -2,12 +2,15 @@
 from models.myunit import MyTest, AppiumDriver
 from page_obj.user_info_page import EditUserInfo
 from utils.screenshot import screenshot
+from utils.cancle_dialog import CancleDialog
 
 
 class EditUserInfoTest(MyTest):
     """用户个人信息编辑"""
     def setUp(self):
         self.driver = AppiumDriver().start_appium('4723', 1)
+        self.cancle_dialog = CancleDialog(self.driver)
+        self.cancle_dialog.cancle_update()
         self.eui = EditUserInfo(self.driver)
         self.eui.login_user_info_btn()
         self.eui.login_edit_btn()

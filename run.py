@@ -43,10 +43,10 @@ def run_suite():
     suite = unittest.TestSuite()
 
     # 添加测试用例到测试套件
-    tests = [RegisterTest('test_register1'), RegisterTest('test_register2'), RegisterTest('test_register3'),
-            LoginTest("test_login1"), LoginTest('test_login2'), LoginTest('test_login3'),
-            LoginTest('test_login4'), LoginTest('test_sina_login'), LoginTest('test_qq_login')]
-    # tests = [LoginTest('test_qq_login'), ]
+    # tests = [RegisterTest('test_register1'), RegisterTest('test_register2'), RegisterTest('test_register3'),
+    #         LoginTest("test_login1"), LoginTest('test_login2'), LoginTest('test_login3'),
+    #         LoginTest('test_login4'), LoginTest('test_sina_login'), LoginTest('test_qq_login')]
+    tests = [LoginTest('test_qq_login'), ]
     suite.addTests(tests)
     print suite.countTestCases()
 
