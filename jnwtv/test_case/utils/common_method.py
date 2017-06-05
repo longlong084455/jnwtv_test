@@ -6,7 +6,8 @@ from wait_element import *
 
 # 0 指用户登录状态 1 游客状态
 def logout(self, state):
-    image_btn = self.driver.find_element_by_class_name('android.widget.ImageButton')
+    image_btn = self.driver.find_element_by_id('toolbar').\
+        find_element_by_class_name('android.widget.ImageButton')
     image_btn.click()
     if state == 0:
         time.sleep(1)
