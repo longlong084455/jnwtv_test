@@ -2,6 +2,7 @@
 import time
 from touch_actions import SwipeAction
 from wait_element import *
+from screenshot import screenshot
 
 
 # 0 指用户登录状态 1 游客状态
@@ -30,3 +31,11 @@ def is_casually(self):
     if wait_element_visible_by_id(self.driver, 'title', '不在游客模式状态'):
         return True
     return False
+
+
+def find_toast(driver, msg):
+    message = '//*[@text=\'{}\']'.format(msg)
+    try:
+        ele = WebDriverWait(driver, 5, 0.5).until(EC.presence_of_all_elements_located(By.LINK_TEXT, msg))
+    except:
+        screenshot()

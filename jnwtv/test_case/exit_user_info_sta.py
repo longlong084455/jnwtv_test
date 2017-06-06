@@ -1,8 +1,9 @@
 # coding:utf-8
 from models.myunit import MyTest, AppiumDriver
 from page_obj.user_info_page import EditUserInfo
-from utils.screenshot import screenshot
+from utils.screenshot import screenshot, screen_verific, get_toast_log
 from utils.cancle_dialog import CancleDialog
+from utils.common_method import find_toast
 
 
 class EditUserInfoTest(MyTest):
@@ -16,7 +17,7 @@ class EditUserInfoTest(MyTest):
         self.eui.login_edit_btn()
 
     def test_edit1(self):
-        """测试昵称编辑"""
+        """昵称编辑"""
         self.old_name = self.eui.get_name()
         print self.old_name
         self.eui.name_btn()
@@ -80,4 +81,14 @@ class EditUserInfoTest(MyTest):
         except AssertionError, msg:
             screenshot()
             print msg
+
+    def test_edit5(self):
+        """更换头像"""
+        self.eui.img_btn()
+        self.eui.gallery_btn()
+        self.eui.select_photo(0)
+        self.eui.ok_btn()
+        # find_toast(self.driver, u'上传成功')
+        get_toast_log('demo', u'上传成功')
+
 

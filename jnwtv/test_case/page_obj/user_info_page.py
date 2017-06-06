@@ -27,6 +27,46 @@ class EditUserInfo(Page):
     def back_user_info_btn(self):
         self.find_element(*self.back_user_info_loc).click()
 
+    # 头像更换
+    img_r_loc = (By.ID, 'personal_img_r')
+    camera_loc = (By.ID, 'camera') # 相机
+    gallery_loc = (By.ID, 'gallery') # 相册
+
+    def img_btn(self):
+        self.find_element(*self.img_r_loc).click()
+
+    def camera_btn(self):
+        self.find_element(*self.camera_loc).click()
+
+    def gallery_btn(self):
+        self.find_element(*self.gallery_loc).click()
+
+    # 图片列表
+    photos_loc = (By.ID, 'wrap_layout')
+    back_btn_loc = (By.ID, 'btn_back') # 取消更换
+    def back_btn(self):
+        self.find_element(*self.back_btn_loc).click()
+
+    def get_photos(self):
+        return self.find_elements_by_id('wrap_layout')
+
+    # 选择要修改的头像， 默认为第二张
+    def select_photo(self, index=0):
+        # 如果相册为空的话，返回原来的界面，选择去相机
+        if len(self.get_photos()) == 0:
+            return
+        self.get_photos()[index].click()
+
+    # 确认图片的页面
+    cancel_loc = (By.ID, 'cancel')
+    ok_loc = (By.ID, 'ok')
+    def cancel_btn(self):
+        self.find_element(*self.cancel_loc).click()
+
+    def ok_btn(self):
+        self.find_element(*self.ok_loc).click()
+
+
     # 名字
     name_r_loc = (By.ID, 'personal_name_r')
     name_c_loc = (By.ID, 'personal_name_c')

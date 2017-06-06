@@ -79,7 +79,7 @@ class LoginTest(MyTest):
         try:
             self.cancle_dialog.cancle_daily_share()
             self.cancle_dialog.cancle_vote()
-            self.assertEqual(self.lp.get_title(), u'剧能玩', '登录失败')
+            self.assertEqual(self.lp.get_title(), u'最新', '登录失败')
         except AssertionError, msg:
             screenshot()
             print msg
@@ -92,7 +92,7 @@ class LoginTest(MyTest):
         try:
             self.cancle_dialog.cancle_daily_share()
             self.cancle_dialog.cancle_vote()
-            self.assertEqual(self.lp.get_title(), u'剧能玩', '登录失败')
+            self.assertEqual(self.lp.get_title(), u'最新', '登录失败')
         except AssertionError, msg:
             screenshot()
             print msg

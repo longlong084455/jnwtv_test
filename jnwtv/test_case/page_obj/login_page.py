@@ -45,7 +45,7 @@ class LoginPage(Page):
     def get_message(self):
         return self.find_element(*self.message_loc).get_attribute('text')
 
-    title_loc = (By.ID, 'title')
+    title_loc = (By.ID, 'tv_tab_title')
 
     def get_title(self):
         return self.find_element(*self.title_loc).get_attribute('text')
