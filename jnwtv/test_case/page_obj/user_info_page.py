@@ -2,7 +2,7 @@
 from jnwtv.test_case.models.base_page import Page
 from selenium.webdriver.common.by import By
 
-class EditUserInfo(Page):
+class EditUserInfoPage(Page):
     '''界面元素'''
     # nick_name_loc = (By.ID, 'tv_nick_name') # 昵称
     # user_desc_loc = (By.ID, 'tv_desc') # 简介
@@ -140,10 +140,90 @@ class EditUserInfo(Page):
     def addr_ok_btn(self):
         self.find_element(*self.addr_edit_ok_loc).click()
 
+class UserToolsPage(Page):
+    login_user_info_loc = (By.CLASS_NAME, 'android.widget.ImageButton')  # 进入个人中心的按钮
+    # 进入个人中心
+    def login_user_info_btn(self):
+        self.find_element(*self.login_user_info_loc).click()
 
 
+    # 用户的小功能
+    tv_amount_loc = (By.ID, 'tv_amount')
+    def get_tv_amounts(self):
+        return self.find_elements_by_id('tv_amount')
+
+    # 0 关注  1 粉丝  2 剧点 3 代金券 4 赏金
+    def tv_amount_btn(self, index):
+        """0 关注  1 粉丝  2 剧点 3 代金券 4 赏金"""
+        self.get_tv_amounts()[index].click()
+
+    def get_amount(self, index):
+        """0 关注  1 粉丝  2 剧点 3 代金券 4 赏金"""
+        return self.get_tv_amounts()[index].get_attribute('text')
+
+    # 搜索输入框
+    filter_edit_loc = (By.ID, 'filter_edit')
+    def set_search(self, index=0):
+        self.find_element(*self.filter_edit_loc).send_keys(self.get_atten_name()[index].get_attribute('text'))
+
+    # 返回按钮
+    back_loc = (By.CLASS_NAME, 'android.widget.ImageButton')
+    def back_btn(self):
+        self.find_element(*self.back_loc).click()
+
+    # 关注列表
+    item_layout_loc = (By.ID, 'item_layout')
+    focuson_item_name_loc = (By.ID, 'focuson_item_name')
+    def get_attentions_list(self):
+        return self.find_elements(*self.item_layout_loc)
+
+    def get_atten_name(self):
+        return self.find_elements(*self.focuson_item_name_loc)
+
+    # 进入关注的用户的详情
+    def login_attention_info(self, index=0):
+        self.get_attentions_list()[index].click()
+
+    # 取消关注按钮
+    btn_attention_loc = (By.ID, 'btn_attention')
+    def cancle_attention_btn(self):
+        self.find_element(*self.btn_attention_loc).click()
+
+    # 返回关注列表的返回键
+    iv_go_back_loc = (By.ID, 'iv_go_back')
+    def back_attention_btn(self):
+        self.find_element(*self.iv_go_back_loc).click()
 
 
+    # 粉丝
+    ll_item_fans_loc = (By.ID, 'll_item_fans')
+    def get_all_fans(self):
+        return self.find_elements(*self.ll_item_fans_loc)
+
+    def login_fans_detail(self):
+        self.get_all_fans()[0].click()
 
 
+    # 剧点和代金券
+    jpoint_num_loc = (By.ID, 'jpoint_num')
+    coupon_num_loc = (By.ID, 'coupon_num')
+    def get_point_num(self):
+        return self.find_element(*self.jpoint_num_loc).get_attribute('text') # 获取内部的剧点
 
+    def get_coupon_num(self):
+        return self.find_element(*self.coupon_num_loc).get_attribute('text') # 获取内部的代金券
+
+    # 充值按钮
+    recharge_btn_loc = (By.ID, 'btn_charge')
+    def recharge_btn(self):
+        self.find_element(*self.recharge_btn_loc).click()
+
+    # 兑换按钮
+    exchange_btn_loc = (By.ID, 'top_up')
+    def exchange_btn(self):
+        self.find_element(*self.exchange_btn_loc).click()
+
+    # 代金券任务按钮
+    task_btn_loc = (By.ID, 'btn_jpoint_task')
+    def task_btn(self):
+        self.find_element(*self.task_btn_loc).click()

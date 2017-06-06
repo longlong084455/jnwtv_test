@@ -11,6 +11,7 @@ from email.mime.text import MIMEText
 import HTMLTestRunner
 from jnwtv.test_case.login_sta import LoginTest
 from jnwtv.test_case.register_sta import RegisterTest
+from jnwtv.test_case.exit_user_info_sta import UserTools
 
 
 
@@ -46,7 +47,9 @@ def run_suite():
     # tests = [RegisterTest('test_register1'), RegisterTest('test_register2'), RegisterTest('test_register3'),
     #         LoginTest("test_login1"), LoginTest('test_login2'), LoginTest('test_login3'),
     #         LoginTest('test_login4'), LoginTest('test_sina_login'), LoginTest('test_qq_login')]
-    tests = [LoginTest('test_qq_login'), ]
+    # tests = [LoginTest('test_qq_login'), ]
+    # tests = [UserTools('test_tool1'), UserTools('test_tool2'), UserTools('test_tool3'), UserTools('test_tool4'), ]
+    tests = [UserTools('test_tool3'), ]
     suite.addTests(tests)
     print suite.countTestCases()
 
