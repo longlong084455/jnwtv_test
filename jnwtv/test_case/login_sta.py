@@ -61,7 +61,7 @@ class LoginTest(MyTest):
 
     def test_login4(self):
         """用户名正确、密码正确"""
-        self.user_login_verify(phone='15601732620', password='123456')
+        self.user_login_verify(phone='17737150711', password='123456')
         try:
             self.cancle_dialog.cancle_daily_share()
             self.cancle_dialog.cancle_vote()
@@ -69,9 +69,6 @@ class LoginTest(MyTest):
         except AssertionError, msg:
             screenshot()
             print msg
-        finally:
-            print '退出'
-            logout(self, 0)
 
     def test_sina_login(self):
         """微博登陆"""

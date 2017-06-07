@@ -19,7 +19,6 @@ class EditUserInfoTest(MyTest):
     def test_edit1(self):
         """昵称编辑"""
         self.old_name = self.eui.get_name()
-        print self.old_name
         self.eui.name_btn()
         self.eui.set_name(u'龙龙')
         self.eui.name_ok_btn()
@@ -27,7 +26,6 @@ class EditUserInfoTest(MyTest):
             self.eui.back_user_info_btn()
             self.eui.login_edit_btn()
             self.new_name = self.eui.get_name()
-            print self.new_name
             self.assertNotEqual(self.old_name, self.new_name, '昵称修改失败')
         except AssertionError, msg:
             screenshot()
@@ -92,11 +90,14 @@ class EditUserInfoTest(MyTest):
         get_toast_log('demo', u'上传成功')
 
 
-class UserTools(MyTest):
+class UserToolsTest(MyTest):
+    """用户关注 粉丝 剧点 赏金 测试"""
     def setUp(self):
         self.driver = AppiumDriver().start_appium('4723', 1)
         self.cancle_dialog = CancleDialog(self.driver)
         self.cancle_dialog.cancle_update()
+        self.cancle_dialog.cancle_daily_share()
+        self.cancle_dialog.cancle_vote()
         self.tools = UserToolsPage(self.driver)
         self.tools.login_user_info_btn()
         self.attentions_num = int(self.tools.get_amount(0)) # 关注数
@@ -150,7 +151,7 @@ class UserTools(MyTest):
     def test_tool4(self):
         """测试关注用户是否可以添加到关注"""
         try:
-            if self.fans_num == 0 or self.attentions_num != 0:
+            if self.fans_num == 0:
                 self.skipTest('条件不满足，没办法测试')
             self.tools.tv_amount_btn(1)
             self.tools.login_fans_detail()
@@ -175,28 +176,92 @@ class UserTools(MyTest):
             print msg
 
     def test_tool6(self):
-        """充值测试"""
+        """充值商品个数测试"""
         try:
             self.tools.tv_amount_btn(2)
             self.tools.recharge_btn()
+            products = self.tools.get_product_num()
+            self.assertTrue(products == 7, '商品数量不对')
         except AssertionError, msg:
             screenshot()
             print msg
 
     def test_tool7(self):
-        """兑换测试"""
+        """充值方式个数测试"""
         try:
             self.tools.tv_amount_btn(2)
-            self.tools.exchange_btn()
+            self.tools.recharge_btn()
+            self.tools.product_btn()
+            pay_ways_num = len(self.tools.get_pay_ways()) - 2
+            self.assertTrue(pay_ways_num == 3, '支付方式的个数不对')
         except AssertionError, msg:
             screenshot()
             print msg
 
     def test_tool8(self):
+        """cdkey兑换代金券测试"""
+        try:
+            self.tools.tv_amount_btn(2)
+            self.tools.exchange_btn()
+            self.tools.set_cdkey('GJGVFDKWVJKXHDQV')
+            self.tools.submit_btn()
+            self.tools.check_jpoint_btn()
+            new_coupon_num = int(self.tools.get_coupon_num())
+            self.assertTrue(new_coupon_num - self.coupon_num == 5, '兑换代金券失败')
+        except AssertionError, msg:
+            screenshot()
+            print msg
+
+    @unittest.skip('10.4数据没办法测试')
+    def test_tool9(self):
         """代金券任务测试"""
         try:
             self.tools.tv_amount_btn(2)
             self.tools.task_btn()
+        except AssertionError, msg:
+            screenshot()
+            print msg
+
+    def test_tool10(self):
+        """赏金兑换商品数量的测试"""
+        try:
+            self.tools.tv_amount_btn(4) # 进入赏金页面
+            self.tools.coupon_exchange_btn() # 进入赏金兑换代金券页面
+            exchange_products_num = len(self.tools.get_exchange_products_list()) # 获得所有兑换商品的数量
+            self.assertTrue(exchange_products_num == 3, '赏金兑换商品数量不对')
+        except AssertionError, msg:
+            screenshot()
+            print msg
+
+    def test_tool11(self):
+        """赏金兑换代金券测试"""
+        try:
+            self.tools.tv_amount_btn(4) # 进入赏金
+            self.tools.coupon_exchange_btn() # 进入兑换
+            if self.reward_num == 0:
+                self.skipTest('赏金为0.跳过此次测试')
+            self.tools.exchange_product_btn() # 选择商品
+            self.tools.coupon_exchange_btn() # 点击兑换
+            self.tools.back_btn() # 返回赏金
+            self.tools.back_btn() # 返回个人中心
+            new_reward_num = int(self.tools.get_amount(4)) # 获取新的赏金数
+            new_coupon_num = int(self.tools.get_amount(3)) # 获取新的代金券数
+            self.assertTrue(self.reward_num - new_reward_num  == 100, '赏金兑换失败')
+            self.assertTrue(new_coupon_num - self.coupon_num  == 25, '赏金兑换失败')
+        except AssertionError, msg:
+            screenshot()
+            print msg
+
+    def test_tool12(self):
+        """赏金提现测试"""
+        try:
+            self.tools.tv_amount_btn(4)
+            if self.tools.withdraw_is_exist():
+                self.tools.withdraw_btn()
+                verification_text = self.tools.get_withdraw_commit_text()
+                self.assertEqual(verification_text, u'提交并保存', '进入提现界面失败')
+            else:
+                self.skipTest('该用户不是剧组成员，不具备提现功能')
         except AssertionError, msg:
             screenshot()
             print msg

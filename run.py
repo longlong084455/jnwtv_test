@@ -11,7 +11,8 @@ from email.mime.text import MIMEText
 import HTMLTestRunner
 from jnwtv.test_case.login_sta import LoginTest
 from jnwtv.test_case.register_sta import RegisterTest
-from jnwtv.test_case.exit_user_info_sta import UserTools
+from jnwtv.test_case.exit_user_info_sta import EditUserInfoTest
+from jnwtv.test_case.exit_user_info_sta import UserToolsTest
 
 
 
@@ -45,11 +46,16 @@ def run_suite():
 
     # 添加测试用例到测试套件
     # tests = [RegisterTest('test_register1'), RegisterTest('test_register2'), RegisterTest('test_register3'),
-    #         LoginTest("test_login1"), LoginTest('test_login2'), LoginTest('test_login3'),
-    #         LoginTest('test_login4'), LoginTest('test_sina_login'), LoginTest('test_qq_login')]
-    # tests = [LoginTest('test_qq_login'), ]
-    # tests = [UserTools('test_tool1'), UserTools('test_tool2'), UserTools('test_tool3'), UserTools('test_tool4'), ]
-    tests = [UserTools('test_tool3'), ]
+    #          LoginTest("test_login1"), LoginTest('test_login2'), LoginTest('test_login3'),
+    #          LoginTest('test_sina_login'), LoginTest('test_qq_login'), LoginTest('test_login4'),
+    #          EditUserInfoTest('test_edit1'), EditUserInfoTest('test_edit2'), EditUserInfoTest('test_edit3'),
+    #          EditUserInfoTest('test_edit4'), EditUserInfoTest('test_edit5'),
+    #          UserToolsTest('test_tool1'), UserToolsTest('test_tool2'), UserToolsTest('test_tool3'),
+    #          UserToolsTest('test_tool4'), UserToolsTest('test_tool5'), UserToolsTest('test_tool6'),
+    #          UserToolsTest('test_tool7'), UserToolsTest('test_tool8'), UserToolsTest('test_tool9'),
+    #          UserToolsTest('test_tool10'), UserToolsTest('test_tool11'), UserToolsTest('test_tool12'), ]
+    # tests = [LoginTest('test_sina_login'), LoginTest('test_qq_login'), LoginTest('test_login4'), ]
+    tests = [LoginTest('test_qq_login'), ]
     suite.addTests(tests)
     print suite.countTestCases()
 

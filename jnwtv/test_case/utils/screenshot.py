@@ -42,4 +42,4 @@ def get_toast_log(name, msg):
     os.popen("adb shell rm /data/local/tmp/tmp.png")
     file_path = 'E:\\appium_work\\workplace\\jnwtv_1.0\\jnwtv\\test_case\\result\\verification_image\\' \
                 'verification_' + name + '.png'
-    print tools[0].image_to_string(Image.open(file_path), )
+    tools[0].image_to_string(Image.open(file_path), )
