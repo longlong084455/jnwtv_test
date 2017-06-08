@@ -6,24 +6,19 @@ from screenshot import screenshot
 
 
 # 0 指用户登录状态 1 游客状态
-def logout(self, state):
-    image_btn = self.driver.find_element_by_id('toolbar').\
-        find_element_by_class_name('android.widget.ImageButton')
-    image_btn.click()
-    if state == 0:
-        time.sleep(1)
-        SwipeAction(self.driver).swipe_up(1000)
-        time.sleep(1)
-        # 退出登录  btn2 确定  btn1 取消
-        self.driver.find_element_by_id('layout_exit').click()
-        self.driver.find_element_by_id('btn2').click()
-    elif state == 1:
-        self.driver.find_element_by_id('again').click()
-        time.sleep(1)
+def logout(self):
+    if not wait_element_visible_by_id(self.driver, 'confirm', '不在登陆界面'):
+        image_btn = self.driver.find_element_by_id('toolbar'). \
+            find_element_by_class_name('android.widget.ImageButton')
         image_btn.click()
-        time.sleep(1)
-        self.driver.find_element_by_id('login').click()
-        time.sleep(1)
+        if not wait_element_visible_by_id(self.driver, 'again', '不是游客模式'):
+            SwipeAction(self.driver).swipe_up(1000)
+            self.driver.find_element_by_id('layout_exit').click()
+            self.driver.find_element_by_id('btn2').click()
+        else:
+            self.driver.find_element_by_id('again').click()
+            image_btn.click()
+            self.driver.find_element_by_id('login').click()
 
 
 def is_casually(self):

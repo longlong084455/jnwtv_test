@@ -5,6 +5,7 @@ from utils.screenshot import screenshot
 from utils.cancle_dialog import CancleDialog
 from utils.common_method import logout
 from jnwtv.test_case.models.driver import AppiumDriver
+from utils.logger import Logger
 
 
 class LoginTest(MyTest):
@@ -89,12 +90,13 @@ class LoginTest(MyTest):
         try:
             self.cancle_dialog.cancle_daily_share()
             self.cancle_dialog.cancle_vote()
-            self.assertEqual(self.lp.get_title(), u'最新', '登录失败')
-        except AssertionError, msg:
-            screenshot()
-            print msg
-        finally:
-            logout(self, 0)
+            verification = self.lp.get_title()
+            logout(self)
+            self.assertEqual(verification, u'最新1', '登录失败')
+        except Exception, msg:
+            # screenshot()
+            Logger.error(msg)
+
 
     # def test_casual_login(self):
     #     """游客登陆"""

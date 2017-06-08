@@ -4,6 +4,7 @@ from unittest import TestCase
 from driver import AppiumDriver
 
 
+
 class MyTest(TestCase):
     def setUp(self):
         """
@@ -13,6 +14,7 @@ class MyTest(TestCase):
         :return:
         """
         self.driver = AppiumDriver().start_appium('4723', 0)
+
 
     def tearDown(self):
         self.driver.quit()

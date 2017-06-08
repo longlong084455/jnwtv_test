@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 
 import HTMLTestRunner
-from jnwtv.test_case.login_sta import LoginTest
+# from jnwtv.test_case.login_sta import LoginTest
 from jnwtv.test_case.register_sta import RegisterTest
 from jnwtv.test_case.exit_user_info_sta import EditUserInfoTest
 from jnwtv.test_case.exit_user_info_sta import UserToolsTest
@@ -55,6 +55,7 @@ def run_suite():
     #          UserToolsTest('test_tool7'), UserToolsTest('test_tool8'), UserToolsTest('test_tool9'),
     #          UserToolsTest('test_tool10'), UserToolsTest('test_tool11'), UserToolsTest('test_tool12'), ]
     # tests = [LoginTest('test_sina_login'), LoginTest('test_qq_login'), LoginTest('test_login4'), ]
+    # tests = [LoginTest('test_qq_login'), LoginTest('test_login4'), ]
     tests = [LoginTest('test_qq_login'), ]
     suite.addTests(tests)
     print suite.countTestCases()
