@@ -6,7 +6,7 @@ import time
 timestamp = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 log_file = 'E:\\appium_work\\workplace\\jnwtv_1.0\\logger\\' + timestamp + 'jnwtv_test_info.log'
 # 设置日志水平
-log_level = logging.ERROR
+log_level = logging.INFO
 
 # console = logging.StreamHandler()
 # console.setLevel(logging.INFO)

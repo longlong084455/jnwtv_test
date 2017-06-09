@@ -3,9 +3,21 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from wait_element import *
 
 
 class SwipeAction:
+    def pull_refresh(self, start, end, duration, message):
+        while 1:
+            x = self.driver.get_window_size()['width']
+            y = self.driver.get_window_size()['height']
+            x1 = int(x * 0.5)
+            y1 = int(y * start)
+            y2 = int(y * end)
+            self.driver.swipe(x1, y1, x1, y2, duration)
+            if wait_element_visible_by_name(self.driver, message):
+                break
+
     def auto_check_cartoon(self, times, start, end, duration):
         for s in range(times):
             x = self.driver.get_window_size()['width']
