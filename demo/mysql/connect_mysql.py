@@ -55,6 +55,7 @@ if __name__ == '__main__':
         user_info.setdefault('user_nick', item[1])
         user_info.setdefault('mobile', item[2])
         user_list.append(user_info)
+        break
     print user_list
 
 
