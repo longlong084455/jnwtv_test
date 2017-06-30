@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 
 import HTMLTestRunner
-# from jnwtv.test_case.login_sta import LoginTest
+from jnwtv.test_case.login_sta import LoginTest
 from jnwtv.test_case.register_sta import RegisterTest
 from jnwtv.test_case.exit_user_info_sta import EditUserInfoTest
 from jnwtv.test_case.exit_user_info_sta import UserToolsTest

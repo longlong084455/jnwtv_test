@@ -92,7 +92,8 @@ class LoginTest(MyTest):
             self.cancle_dialog.cancle_vote()
             verification = self.lp.get_title()
             logout(self)
-            self.assertEqual(verification, u'最新1', '登录失败')
+            self.assertEqual(verification, u'最新', '登录失败')
+            Logger.info('登陆成功')
         except Exception, msg:
             # screenshot()
             Logger.error(msg)

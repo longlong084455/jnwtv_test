@@ -48,7 +48,7 @@ class LoginPage(Page):
     title_loc = (By.ID, 'tv_tab_title')
 
     def get_title(self):
-        return self.find_element(*self.title_loc).get_attribute('text')
+        return self.find_elements(*self.title_loc)[0].get_attribute('text')
 
 
 class ThirdLogin(Page):

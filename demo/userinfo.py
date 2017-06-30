@@ -43,10 +43,12 @@ class UserInfo:
         #                             'ui.is_vip, ui.is_manager '
         #                             'from u_user_info ui '
         #                             'where ui.account = \'%s\'' % (self._account))
-        data = Database().fetch_all('select '
+        conn = Database()
+        data = conn.fetch_all('select '
                                     '* '
                                     'from u_user_info ui '
                                     'where ui.account = \'%s\'' % (account))
+        conn.close()
         return data
 
 

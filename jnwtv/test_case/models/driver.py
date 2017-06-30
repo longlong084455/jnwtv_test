@@ -19,7 +19,7 @@ class AppiumDriver:
         brands = root.getElementsByTagName('brand')
         packages = root.getElementsByTagName('package')
         for brand in brands:
-            if brand.getAttribute("name") == 'xiaomi':
+            if brand.getAttribute("name") == 'oppo R9':
                 desired_caps['deviceName'] = brand.getElementsByTagName('deviceName')[0].firstChild.data
                 desired_caps['platformName'] = brand.getElementsByTagName('platformName')[0].firstChild.data
                 desired_caps['platformVersion'] = brand.getElementsByTagName('platformVersion')[0].firstChild.data
